@@ -53,10 +53,13 @@ MDM (mobileconfig) ──設定を配布──▶ iOS
 ```text
 .agents/skills/ios-content-filter/  プロジェクトスキル（本ドメインの開発知識）
 docs/                               詳細ドキュメント（API・プロファイル・URL Filter等）
-FilterApp/                          本体アプリ (NEFilterManager 操作・UI) ※未作成
-FilterDataProvider/                 Data Provider appex ※未作成
-FilterControlProvider/              Control Provider appex ※未作成
-profiles/                           検証用 .mobileconfig ※未作成
+project.yml                         Xcode プロジェクト定義（正本。entitlements 含む）
+adhoc_build.sh                      archive → IPA 書き出しの自動スクリプト
+FilterApp/                          本体アプリ (NEFilterManager 操作・UI)
+FilterDataProvider/                 Data Provider appex
+FilterControlProvider/              Control Provider appex
+FilterShared/                       3ターゲット共有ソース（ルール型・RuleStore）
+profiles/                           検証用 .mobileconfig
 ```
 
 ## 開発規約
@@ -81,6 +84,17 @@ profiles/                           検証用 .mobileconfig ※未作成
 - [docs/deployment.md](docs/deployment.md) — デプロイ経路・entitlement・Xcode 設定
 - [docs/url-filter-ios26.md](docs/url-filter-ios26.md) — iOS 26 URL Filter
 - [docs/references.md](docs/references.md) — 一次情報リンク集
+- [docs/sample-app.md](docs/sample-app.md) — サンプル構成・ビルド・署名手順
+
+## ビルド
+
+```sh
+xcodegen generate   # *.xcodeproj は生成物（コミット対象外）
+./adhoc_build.sh    # → build/adhoc/export/FilterApp.ipa
+```
+
+署名の初回前提条件は [docs/sample-app.md](docs/sample-app.md) 参照。
+entitlements の正本は `project.yml`（直書きは `xcodegen generate` で消える）。
 
 ## スキル
 

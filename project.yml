@@ -1,0 +1,103 @@
+# ContentFilter — Xcode project definition (single source of truth).
+# Generate with: xcodegen generate
+# The generated *.xcodeproj is NOT committed (see .gitignore).
+
+name: ContentFilter
+
+options:
+  deploymentTarget:
+    iOS: "18.0"
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: 6KG5EF3BN2
+    CODE_SIGN_STYLE: Automatic
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: 1.0.0
+    CURRENT_PROJECT_VERSION: 1
+    GENERATE_INFOPLIST_FILE: NO
+
+targets:
+  FilterApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: FilterApp
+        excludes:
+          - Info.plist
+          - "*.entitlements"
+      - path: FilterShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.yusukeiwaki.exampleswiftwebcontentfilter
+        INFOPLIST_FILE: FilterApp/Info.plist
+    entitlements:
+      path: FilterApp/FilterApp.entitlements
+      properties:
+        com.apple.developer.networking.networkextension:
+          - content-filter-provider
+        com.apple.security.application-groups:
+          - group.io.github.yusukeiwaki.exampleswiftwebcontentfilter
+    dependencies:
+      - target: FilterDataProvider
+        embed: true
+      - target: FilterControlProvider
+        embed: true
+
+  FilterDataProvider:
+    type: app-extension
+    platform: iOS
+    extensionPointIdentifier: com.apple.networkextension.filter-data
+    sources:
+      - path: FilterDataProvider
+        excludes:
+          - Info.plist
+          - "*.entitlements"
+      - path: FilterShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.yusukeiwaki.exampleswiftwebcontentfilter.data
+        INFOPLIST_FILE: FilterDataProvider/Info.plist
+    entitlements:
+      path: FilterDataProvider/FilterDataProvider.entitlements
+      properties:
+        com.apple.developer.networking.networkextension:
+          - content-filter-provider
+        com.apple.security.application-groups:
+          - group.io.github.yusukeiwaki.exampleswiftwebcontentfilter
+
+  FilterControlProvider:
+    type: app-extension
+    platform: iOS
+    extensionPointIdentifier: com.apple.networkextension.filter-control
+    sources:
+      - path: FilterControlProvider
+        excludes:
+          - Info.plist
+          - "*.entitlements"
+      - path: FilterShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.yusukeiwaki.exampleswiftwebcontentfilter.control
+        INFOPLIST_FILE: FilterControlProvider/Info.plist
+    entitlements:
+      path: FilterControlProvider/FilterControlProvider.entitlements
+      properties:
+        com.apple.developer.networking.networkextension:
+          - content-filter-provider
+        com.apple.security.application-groups:
+          - group.io.github.yusukeiwaki.exampleswiftwebcontentfilter
+
+schemes:
+  FilterApp:
+    build:
+      targets:
+        FilterApp: all
+    run:
+      config: Debug
+    archive:
+      config: Release
