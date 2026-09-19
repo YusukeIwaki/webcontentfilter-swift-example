@@ -23,4 +23,5 @@ xcodegen generate
 - [docs/url-filter-ios26.md](docs/url-filter-ios26.md) — iOS 26 URL Filter
 - [docs/references.md](docs/references.md) — 一次情報リンク集
 - [docs/sample-app.md](docs/sample-app.md) — サンプル構成・ビルド・署名手順
+- [docs/declarative-management.md](docs/declarative-management.md) — DDM 宣言・asset 要否
 - `.agents/skills/ios-content-filter/` — 開発用プロジェクトスキル

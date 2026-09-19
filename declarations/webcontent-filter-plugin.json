@@ -1,0 +1,24 @@
+{
+  "Type": "com.apple.configuration.webcontent-filter.plugin",
+  "Identifier": "io.github.yusukeiwaki.exampleswiftwebcontentfilter.declaration.webcontentfilter",
+  "ServerToken": "example-server-token-0001",
+  "Payload": {
+    "VisibleName": "Example Content Filter",
+    "PluginBundleID": "io.github.yusukeiwaki.exampleswiftwebcontentfilter",
+    "ServerAddress": "https://filter.example.com",
+    "Organization": "Example Inc.",
+    "VendorConfig": {
+      "tenantId": "customer-123",
+      "policyId": "sample-policy"
+    },
+    "Filter": {
+      "Browsers": {
+        "Enabled": true
+      },
+      "Sockets": {
+        "Enabled": true,
+        "ProviderComposedIdentifier": "io.github.yusukeiwaki.exampleswiftwebcontentfilter.data"
+      }
+    }
+  }
+}

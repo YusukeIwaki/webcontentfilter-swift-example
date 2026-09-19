@@ -60,6 +60,7 @@ FilterDataProvider/                 Data Provider appex
 FilterControlProvider/              Control Provider appex
 FilterShared/                       3ターゲット共有ソース（ルール型・RuleStore）
 profiles/                           検証用 .mobileconfig
+declarations/                       DDM 用宣言 JSON（構成プロファイル不使用時）
 ```
 
 ## 開発規約
@@ -85,6 +86,7 @@ profiles/                           検証用 .mobileconfig
 - [docs/url-filter-ios26.md](docs/url-filter-ios26.md) — iOS 26 URL Filter
 - [docs/references.md](docs/references.md) — 一次情報リンク集
 - [docs/sample-app.md](docs/sample-app.md) — サンプル構成・ビルド・署名手順
+- [docs/declarative-management.md](docs/declarative-management.md) — DDM 宣言・asset 要否
 
 ## ビルド
 
